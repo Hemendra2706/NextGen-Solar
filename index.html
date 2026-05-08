@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarBot ML | Autonomous Panel Cleaning & Monitoring</title>
+    <meta name="description" content="Intelligent solar panel maintenance using Machine Learning and IoT. Autonomous cleaning robot driven by ESP32 and predictive analytics.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-sun" style="color: var(--primary);"></i>
+                SolarBot ML
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">Logic</a>
+                <a href="#operations">Operations</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#dashboard">Telemetry</a>
+                <a href="#contact" class="btn-primary" style="padding: 0.6rem 1.2rem; margin-left: 1rem; border-radius: 0.8rem;">Contact Info</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero mesh-bg">
+        <img src="assets/hero-bg-light.png" alt="Futuristic Solar Farm" class="hero-bg">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="reveal">Next-Gen <span class="gradient-text">Solar Automation</span></h1>
+                <p class="reveal">Smart, ML-driven maintenance for peak efficiency. Our autonomous robot detects obstructions and self-cleans to maximize energy harvest.</p>
+                <div class="reveal">
+                    <a href="#features" class="btn btn-primary">Discover Innovation</a>
+                    <a href="#dashboard" class="btn" style="color: var(--text-header); font-weight: 700; margin-left: 1.5rem;">View Telemetry <i class="fas fa-arrow-right" style="margin-left: 0.5rem; font-size: 0.8rem;"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="container">
+        <div class="section-title reveal">
+            <h2>Core Technologies</h2>
+            <p class="reveal" style="color: var(--text-body);">Harnessing the power of ESP32, Machine Learning, and IoT for peak performance.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card glass reveal">
+                <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                <h3>Advanced ML Model</h3>
+                <p>High-precision Polynomial Regression model with an <strong>R² score of 0.999</strong> and near-zero RMSE (3.13e-07), ensuring perfect efficiency tracking.</p>
+            </div>
+            <div class="feature-card glass reveal">
+                <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                <h3>Autonomous Action</h3>
+                <p>Integrated cleaning robot triggers automatically when measured current falls below 80% of predicted values.</p>
+            </div>
+            <div class="feature-card glass reveal">
+                <div class="feature-icon"><i class="fas fa-cloud"></i></div>
+                <h3>IoT Dashboard</h3>
+                <p>Real-time telemetry sent to Blynk cloud. Monitor Lux, Current, Efficiency, and Control the robot manually from anywhere.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="mesh-bg">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Intelligent Decision Logic</h2>
+                <p>Our system autonomously monitors environmental factors and executes cleaning cycles based on real-time efficiency drops.</p>
+            </div>
+            <div class="logic-container">
+                <div class="logic-image reveal">
+                    <img src="assets/robot-detail.png" alt="Robot Mechanism">
+                </div>
+                <div class="logic-steps">
+                    
+                    <div class="step reveal">
+                        <div class="step-num">1</div>
+                        <div>
+                            <h4>Sensing Environment</h4>
+                            <p>ESP32 reads Lux levels via BH1750 and measures actual panel current output with precision sensors.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step reveal">
+                        <div class="step-num">2</div>
+                        <div style="width: 100%;">
+                            <h4>Polynomial Analysis</h4>
+                            <p>The model calculates expected current using the trained formula:</p>
+                            <div style="background: #f1f5f9; padding: 1.5rem; border-radius: 1rem; margin-top: 1rem; border-left: 4px solid var(--secondary);">
+                                <code style="font-size: 1.1rem; color: var(--text-header);">I = (2.93e-18 * L²) + (5.60e-06 * L) + 4.19e-08</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step reveal">
+                        <div class="step-num">3</div>
+                        <div>
+                            <h4>Dynamic Trigger</h4>
+                            <p>If <b>Measured < Threshold</b>, the cleaning sequence activates automatically (Motor Forward → Brush → Reverse).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status & Operations Section -->
+    <section id="operations" class="container reveal" style="padding: 4rem 0;">
+        <div class="section-title" style="margin-bottom: 3rem;">
+            <h2>Operational States</h2>
+            <p>Intelligent responses tailored to panel efficiency levels.</p>
+        </div>
+        <div class="features-grid">
+            <!-- Normal Operation -->
+            <div class="feature-card glass" style="border-top: 5px solid #10b981;">
+                <div class="feature-icon" style="background: rgba(16, 185, 129, 0.1);"><i class="fas fa-check-circle" style="color: #10b981;"></i></div>
+                <h3 style="color: #10b981">Normal State</h3>
+                <p style="font-weight: 700; color: var(--secondary); margin-bottom: 1rem;">Efficiency > 80%</p>
+                <ul style="list-style: none; margin-top: auto;">
+                    <li style="margin-bottom: 0.8rem;"><i class="fas fa-check-circle" style="color: #10b981; margin-right: 0.8rem;"></i> Peak Power Harvest</li>
+                    <li style="margin-bottom: 0.8rem;"><i class="fas fa-check-circle" style="color: #10b981; margin-right: 0.8rem;"></i> Monitoring Only</li>
+                    <li><i class="fas fa-check-circle" style="color: #10b981; margin-right: 0.8rem;"></i> Standby Mode</li>
+                </ul>
+            </div>
+            <!-- Cleaning Mode -->
+            <div class="feature-card glass" style="border-top: 5px solid var(--primary);">
+                <div class="feature-icon" style="background: rgba(245, 158, 11, 0.1);"><i class="fas fa-broom"></i></div>
+                <h3 style="color: var(--primary)">Cleaning Mode</h3>
+                <p style="font-weight: 700; color: var(--secondary); margin-bottom: 1rem;">Efficiency < 80%</p>
+                <ul style="list-style: none; margin-top: auto;">
+                    <li style="margin-bottom: 0.8rem;"><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 0.8rem;"></i> Brushes Engage</li>
+                    <li style="margin-bottom: 0.8rem;"><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 0.8rem;"></i> Dual-Motor Forward Sweep</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 0.8rem;"></i> Auto-Reverse Polishing</li>
+                </ul>
+            </div>
+            <!-- Fault Detection -->
+            <div class="feature-card glass" style="border-top: 5px solid #ef4444;">
+                <div class="feature-icon" style="background: rgba(239, 68, 68, 0.1);"><i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i></div>
+                <h3 style="color: #ef4444;">Fault Detected</h3>
+                <p style="font-weight: 700; color: var(--secondary); margin-bottom: 1rem;">Efficiency < 60%</p>
+                <p style="font-size: 0.95rem; line-height: 1.6;">Critical obstruction detected. The system triggers emergency cleaning cycles and alerts the Blynk dashboard for immediate inspection.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section id="performance" class="container reveal" style="padding: 4rem 0;">
+        <div class="glass" style="padding: 3rem; border: 1px solid var(--border); text-align: center;">
+            <h2 style="margin-bottom: 2rem; font-size: 2.2rem;">Model Performance Metrics</h2>
+            <div class="data-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <div class="data-card" style="background: var(--bg-alt); padding: 1.5rem;">
+                    <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">R² Score (Testing)</p>
+                    <h4 style="font-size: 1.8rem; color: var(--secondary); margin:0;">0.99999999</h4>
+                </div>
+                <div class="data-card" style="background: var(--bg-alt); padding: 1.5rem;">
+                    <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">RMSE (Testing)</p>
+                    <h4 style="font-size: 1.8rem; color: var(--secondary); margin:0;">3.135e-07</h4>
+                </div>
+                <div class="data-card" style="background: var(--bg-alt); padding: 1.5rem;">
+                    <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">Model Type</p>
+                    <h4 style="font-size: 1.8rem; color: var(--secondary); margin:0;">Polynomial Reg.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blynk IoT Monitoring Gallery -->
+    <section id="blynk-gallery" style="background: #f8fafc;">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Blynk IoT Monitoring</h2>
+                <p style="color: var(--text-muted)">Real-time visual feedback for every operational state.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div class="glass reveal" style="padding: 1rem; text-align: center;">
+                    <img src="assets/blynk-normal-light.png" alt="Blynk Normal State" style="width: 100%; border-radius: 1rem; margin-bottom: 1rem; border: 1px solid var(--border);">
+                    <h4 style="color: #10b981;">Normal State</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-header); font-weight: 700;">40,000 Lux | 12.1mA Measured</p>
+                </div>
+                <div class="glass reveal" style="padding: 1rem; text-align: center;">
+                    <img src="assets/blynk-cleaning-light.png" alt="Blynk Cleaning State" style="width: 100%; border-radius: 1rem; margin-bottom: 1rem; border: 1px solid var(--border);">
+                    <h4 style="color: #f59e0b;">Cleaning Mode</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-header); font-weight: 700;">31,044 Lux | 0.125mA Measured</p>
+                </div>
+                <div class="glass reveal" style="padding: 1rem; text-align: center;">
+                    <img src="assets/blynk-fault-light.png" alt="Blynk Fault State" style="width: 100%; border-radius: 1rem; margin-bottom: 1rem; border: 1px solid var(--border);">
+                    <h4 style="color: #ef4444;">Fault Detected</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-header); font-weight: 700;">5,490 Lux | 0mA Measured</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Architecture Section -->
+    <section id="architecture" class="mesh-bg">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Detailed System Architecture</h2>
+                <p>Comprehensive wiring and component interconnect map for the SolarBot ML system.</p>
+            </div>
+            
+            <!-- MASTER BLOCK DIAGRAM -->
+            <div class="glass reveal" style="padding: 1.5rem; margin: 0 auto 3rem; max-width: 650px; background: white; border: 1px solid var(--border); box-shadow: var(--shadow-lg);">
+                <img src="assets/circuit-diagram.png" alt="Detailed System Block Diagram" style="width: 100%; border-radius: 1rem; display: block;">
+            </div>
+
+            <div class="architecture-grid">
+                <!-- Central Intelligence -->
+                <div class="glass reveal" style="border-left: 4px solid var(--secondary);">
+                    <h4 style="color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-microchip" style="margin-right: 0.5rem;"></i> Processing & ML</h4>
+                    <p>The <b>ESP32 DevKit V1</b> acts as the brain, processing real-time sensor data and executing the Polynomial Regression model for predictive maintenance.</p>
+                </div>
+
+                <!-- Actuators -->
+                <div class="glass reveal" style="border-left: 4px solid #ef4444;">
+                    <h4 style="color: #ef4444; margin-bottom: 1rem;"><i class="fas fa-gears" style="margin-right: 0.5rem;"></i> Drive & Actuation</h4>
+                    <p>Dual <b>L298N drivers</b> manage autonomous navigation, while a dedicated <b>Relay module</b> triggers the high-torque brush motor for cleaning cycles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Telemetry Summary -->
+    <section id="dashboard" class="mesh-bg">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Real-time Telemetry</h2>
+                <p>Live operational metrics from the active solar installation.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                <div class="data-card reveal">
+                    <i class="fas fa-bolt data-icon"></i>
+                    <h4>98.2%</h4>
+                    <p>Efficiency</p>
+                </div>
+                <div class="data-card reveal">
+                    <i class="fas fa-lightbulb data-icon"></i>
+                    <h4>40,000</h4>
+                    <p>Lux Level</p>
+                </div>
+                <div class="data-card reveal">
+                    <i class="fas fa-plug data-icon"></i>
+                    <h4>12.1mA</h4>
+                    <p>Current Output</p>
+                </div>
+                <div class="data-card reveal">
+                    <i class="fas fa-shield-halved data-icon"></i>
+                    <h4 style="color: #10b981;">NORMAL</h4>
+                    <p>System Status</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container reveal" style="text-align: center; padding: 4rem 2rem;">
+        <h2 style="margin-bottom: 0.5rem;">Contact Info</h2>
+        <p style="color: var(--secondary); font-weight: 700; margin-bottom: 3rem;">P Hemendra Kumar | Electronics and Communication Engineer</p>
+        
+        <div class="social-links-grid" style="max-width: 900px; margin: 0 auto;">
+            <a href="mailto:palemhemendra@gmail.com" class="social-item">
+                <i class="fas fa-envelope"></i>
+                <span>Email Me</span>
+            </a>
+            <a href="https://linkedin.com/in/palem-hemendra-kumar-58186528b" target="_blank" class="social-item">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/Hemendra2706" target="_blank" class="social-item">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="tel:9391526609" class="social-item">
+                <i class="fas fa-phone"></i>
+                <span>Call Me</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 4rem 0; border-top: 1px solid var(--border); text-align: center; background: var(--bg-alt);">
+        <div class="container">
+            <p style="color: var(--text-header); font-weight: 600; margin-bottom: 1rem;">&copy; 2026 SolarBot ML Project. Engineering Excellence.</p>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Developed by P Hemendra Kumar</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
